@@ -43,3 +43,14 @@ Then /I should (not )?see movies with ratings: (.*)/ do |unmatch,ratings_list|
      step "I should #{unmatch}see \""+movie[:title]+"\""
   end
 end
+
+Then /I should see (\d+) movies/ do |num|
+  num = num.to_i
+  rows = page.find('#movies').all('tr').count - 1
+  assert rows == num, "Movies count #{rows} is not #{num}"
+end
+
+Then /I should see all of the movies/ do
+  count = Movie.count
+  step "I should see #{count} movies"
+end

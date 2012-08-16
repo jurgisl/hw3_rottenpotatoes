@@ -28,14 +28,12 @@ Scenario: restrict to movies with 'PG' or 'R' ratings
   Then I should see movies with ratings: PG,R
     And I should not see movies with ratings: G,PG-13
 
-  # enter step(s) to check the 'PG' and 'R' checkboxes
-  # enter step(s) to uncheck all other checkboxes
-  # enter step to "submit" the search form on the homepage
-  # enter step(s) to ensure that PG and R movies are visible
-  # enter step(s) to ensure that other movies are not visible
-
 Scenario: no ratings selected
-  # see assignment
+  Given I am on the RottenPotatoes home page
+  When I uncheck the following ratings: G,R,PG,PG-13
+  Then I should see 0 movies
 
 Scenario: all ratings selected
-  # see assignment
+  Given I am on the RottenPotatoes home page
+  When I check the following ratings: G,R,PG,PG-13
+  Then I should see all of the movies
