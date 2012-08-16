@@ -22,9 +22,9 @@ Background: movies have been added to database
   And  I am on the RottenPotatoes home page
   
 Scenario: restrict to movies with 'PG' or 'R' ratings
-  Given I am on homepage
+  Given I am on the RottenPotatoes home page
   When I check the following ratings: PG,R
-    AND submit the search form
+    And I press "Refresh"
   Then I should see movies with ratings: PG,R
     And I should not see movies with ratings: G,PG-13
 
