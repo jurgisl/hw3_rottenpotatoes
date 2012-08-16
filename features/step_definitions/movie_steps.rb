@@ -3,13 +3,13 @@
 Given /the following movies exist/ do |movies_table|
   movies_table.hashes.each do |movie|
 
-    a = Movie.new(
-	:title => movie[:title],
-	:rating => movie[:rating],
-	:release_date => movie[:release_date]
-	)
-
-    a.save    
+    if !Movie.find_by_title(movie[:title]) then
+        a = Movie.create(
+        :title => movie[:title],
+        :rating => movie[:rating],
+        :release_date => movie[:release_date]
+        )
+    end
     # each returned element will be a hash whose key is the table header.
     # you should arrange to add that movie to the database here.
   end
@@ -22,6 +22,7 @@ end
 Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   #  ensure that that e1 occurs before e2.
   #  page.content  is the entire content of the page as a string.
+  print page.body
   assert page.body.split(e1).pop.include?(e2), "#{e1} is not before #{e2}"
 end
 
