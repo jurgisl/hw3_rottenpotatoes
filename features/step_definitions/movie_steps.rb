@@ -22,7 +22,7 @@ end
 Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   #  ensure that that e1 occurs before e2.
   #  page.content  is the entire content of the page as a string.
-  flunk "Unimplemented"
+  assert page.body.split(e1).pop.include?(e2), "#{e1} is not before #{e2}"
 end
 
 # Make it easier to express checking or unchecking several boxes at once
